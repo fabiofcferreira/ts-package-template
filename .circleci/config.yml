@@ -72,6 +72,8 @@ workflows:
       - release-approval:
           <<: *release-channel
           type: approval
+          requires:
+            - build
           context:
             - common-env-vars
       - release_package:
