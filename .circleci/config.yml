@@ -1,0 +1,75 @@
+version: 2.1
+
+refs:
+  - &release-channel
+    filters:
+      branches:
+        only:
+          - master
+          - alpha
+          - beta
+  - &branch
+    filters:
+      branches:
+        ignore:
+          - master
+          - alpha
+          - beta
+
+orbs:
+  node: circleci/node
+
+commands:
+  setup:
+    description: Checkout and install dependencies
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+
+  build-package:
+    description: Build package
+    steps:
+      - run:
+          command: yarn build
+          name: Build
+
+  create-package-release:
+    description: Create release
+    steps:
+      - run:
+          command: yarn semantic-release
+          name: Release
+
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - setup
+      - build-package
+
+  release_package:
+    executor: node/default
+    steps:
+      - setup
+      - build-package
+      - create-package-release
+
+workflows:
+  branches:
+    jobs:
+      - build:
+          <<: *branch
+          context:
+            - common-env-vars
+
+  release:
+    jobs:
+      - release-approval:
+          type: approval
+      - release_package:
+          <<: *release-channel
+          requires:
+            - release-approval
+          context:
+            - common-env-vars
