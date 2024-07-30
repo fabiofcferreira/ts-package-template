@@ -13,9 +13,6 @@
 
     /* Modules */
     "module": "commonjs",
-    "rootDir": ".",
-    "paths": {},
-    "rootDirs": [],
     "resolveJsonModule": true,
 
     /* JavaScript Support */
@@ -48,5 +45,7 @@
     "allowUnreachableCode": false,
 
     "skipLibCheck": true
-  }
+  },
+  "include": ["./src"],
+  "exclude": ["./src/**/tests"]
 }
