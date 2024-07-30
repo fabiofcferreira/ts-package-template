@@ -21,18 +21,16 @@ orbs:
 
 commands:
   setup:
-    description: Checkout and install dependencies
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
 
   build-package:
-    description: Build package
     steps:
       - run:
-          command: yarn build
           name: Build
+          command: yarn build
 
   create-package-release:
     description: Create release
@@ -47,6 +45,9 @@ jobs:
     steps:
       - setup
       - build-package
+      - run:
+          name: Test
+          command: yarn test
 
   release_package:
     executor: node/default

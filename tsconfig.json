@@ -13,12 +13,9 @@
 
     /* Modules */
     "module": "commonjs",
-    "rootDir": "./",
-    "baseUrl": "./",
+    "rootDir": ".",
     "paths": {},
     "rootDirs": [],
-    "typeRoots": [],
-    "types": [],
     "resolveJsonModule": true,
 
     /* JavaScript Support */
