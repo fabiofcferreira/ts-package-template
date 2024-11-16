@@ -24,7 +24,9 @@ commands:
     steps:
       - checkout
       - node/install-packages:
+          check-cache: always
           pkg-manager: yarn-berry
+          with-cache: false
       - run:
           name: NPM Auth
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
