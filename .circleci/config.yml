@@ -23,11 +23,8 @@ commands:
   setup:
     steps:
       - checkout
-      - run:
-          name: Enable Corepack
-          command: export COREPACK_ENABLE_DOWNLOAD_PROMPT=0 && corepack enable
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
       - run:
           name: NPM Auth
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
