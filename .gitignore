@@ -4,3 +4,7 @@ node_modules/
 # Dist/lib folders
 dist/
 lib/
+
+# Yarn
+.yarn/
+.pnp*
