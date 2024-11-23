@@ -12,7 +12,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "lint": "eslint --fix",
-    "lint:diff": "eslint",
+    "lint:check": "eslint",
     "format": "yarn prettier -w ./src",
     "format:check": "yarn prettier -l ./src",
     "test": "jest --passWithNoTests",
